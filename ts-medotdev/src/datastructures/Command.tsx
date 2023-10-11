@@ -103,10 +103,10 @@ class EducationCommand extends Command {
 const images = [
   { title: "Me", href: "/rock.png" },
   { title: "My friend Cisco and I hiking Shenandoah", href: "/oldrag.png" },
+  { title: "Family", href: "/fam.png" },
   { title: "My friend Nelson", href: "/menelson.png" },
   { title: "Grad", href: "/aye.png" },
   { title: "Johnny Cash Museum", href: "/cashman.png" },
-  { title: "Family", href: "/fam.png" },
 ];
 
 class PictureCommand extends Command {
