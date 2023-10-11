@@ -3,25 +3,33 @@ use crate::Log;
 
 #[component]
 fn StaticList(
+    bg_color: String,
     commands: Vec<String>,
     set_log: WriteSignal<Log>,
 ) -> impl IntoView {
     let command_list: Vec<_> = commands.into_iter().map(|cmd| {
         let cmd_copy = cmd.clone();
         view! {
-            <li>
+            <li class="md:w-full">
                 <button
+                    class="md:w-full flex justify-start group"
                     on:click = move |_| {
-                        let cmd_clone = cmd.clone();  // Clone the command just before using it.
+                        let cmd_clone = cmd.clone();
                         set_log.update(move |curr_log| {
                             let id = curr_log.len();
-                            curr_log.push_front(
-                                (id, cmd_clone)  // Use the freshly cloned command.
-                            )
+
+                            if cmd_clone == "Clear" {
+                                curr_log.clear();
+                            } else {
+                                curr_log.push_front(
+                                    (id, cmd_clone)
+                                )
+                            }
+
                         });
                     }
                 >
-                    {cmd_copy}
+                    <p class="group-hover:underline decoration-[3px] hover:decoration-dotted underline-offset-4 decoration-[#ffc832]">{cmd_copy}</p>
                 </button>
             </li>
         }
@@ -29,7 +37,7 @@ fn StaticList(
         .collect();
 
     view! {
-        <ul>
+        <ul class=format!("flex flex-wrap justify-center space-x-8 md:space-x-0 md:flex-col px-2 py-2 md:space-y-2 {}", bg_color)>
             {command_list}
         </ul>
     }
@@ -39,7 +47,6 @@ fn StaticList(
 pub fn Sidebar(
     set_log_signal: WriteSignal<Log>
 ) -> impl IntoView {
-
 
     let me_commands = vec![
         "About".to_string(),
@@ -54,29 +61,30 @@ pub fn Sidebar(
         "Clear".to_string(),
     ];
 
-
-
     view! {
-        <div>
-            <div class="md:w-[20em]">
+        <div class="md:w-[20em] divide-y-2 text-white font-semibold">
+            <div class="bg-[#2e2459] py-2 group">
                 <a
                     href="https://github.com/friendlymatthew"
                     target="_blank"
                     rel="noreferrer"
+                    class="group-hover:underline underline-offset-4 decoration-[3px] decoration-[#ffc832]"
                 >
                     <p
-                        class="text-3xl font-semibold"
+                        class="pl-2 text-3xl"
                     >
                         Matthew Kim
                     </p>
                 </a>
             </div>
-            <div class="divide-y-2">
+            <div class="divide-y-2 text-xl">
                 <StaticList
+                    bg_color="bg-[#0b7261]".to_string()
                     commands=me_commands
                     set_log=set_log_signal
                 />
                 <StaticList
+                    bg_color="bg-[#a72145]".to_string()
                     commands=terminal_commands
                     set_log=set_log_signal
                 />
