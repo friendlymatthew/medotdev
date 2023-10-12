@@ -534,6 +534,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.static {
+  position: static;
+}
+
 .absolute {
   position: absolute;
 }
@@ -593,6 +597,10 @@ video {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-3\/4 {
+  width: 75%;
 }
 
 .flex-none {
@@ -891,6 +899,22 @@ video {
 
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
+  .md\:w-\[60em\] {
+    width: 60em;
+  }
+
+  .md\:w-\[40em\] {
+    width: 40em;
+  }
+
+  .md\:w-\[30em\] {
+    width: 30em;
   }
 
   .md\:grid-cols-5 {

@@ -1658,6 +1658,7 @@ dependencies = [
  "console_error_panic_hook",
  "console_log",
  "http",
+ "lazy_static",
  "leptos",
  "leptos_axum",
  "leptos_meta",

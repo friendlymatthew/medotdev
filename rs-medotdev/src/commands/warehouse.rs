@@ -1,3 +1,5 @@
+use std::sync::Mutex;
+use lazy_static::lazy_static;
 use leptos::*;
 use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
@@ -46,6 +48,11 @@ impl Command {
         }
     }
 }
+
+lazy_static! {
+    static ref CURRENT_INDEX: Mutex<usize> = Mutex::new(0);
+}
+
 #[component]
 pub fn command_factory(
     curr_command: String
@@ -148,9 +155,31 @@ pub fn command_factory(
             }
         }
         Command::Picture => {
+
+            let images = [
+                ("boulder", "Harpers Ferry, WV"),
+                ("momsis", "Graduation at Wes"),
+                ("shenandoah", "Me and my friend Cisco at Shenandoah"),
+                ("goose", "My friend Joseph's dog, Goose"),
+                ("nelson", "Me and my friend Nelson"),
+                ("rock", "Old Rag Mountain, Shenandoah, VA"),
+            ];
+
+            let index;
+            {
+                let mut curr = CURRENT_INDEX.lock().unwrap();
+                index = *curr;
+                *curr = (*curr + 1) % images.len();
+            }
+
+            let (image_name, alt_text) = images[index];
+
             view! {
-                <div>
-                    <p>Picture</p>
+                <div class="md:w-[30em] w-3/4">
+                    <picture>
+                        <source srcset=format!("webpg/{}.webp", image_name) type="image/webp"/>
+                        <img src=format!("pngs/{}.png", image_name) alt=alt_text />
+                    </picture>
                 </div>
             }
         }
