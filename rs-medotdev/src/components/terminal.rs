@@ -1,6 +1,8 @@
 use leptos::*;
-use leptos::html::Input;
-use crate::commands::warehouse::{CommandFactory};
+use leptos::html::{Div, Input};
+use strum::IntoEnumIterator;
+use crate::autocomplete::Trie;
+use crate::commands::warehouse::{Command, CommandFactory};
 use crate::Log;
 
 #[component]
@@ -9,9 +11,16 @@ pub fn Terminal(
 ) -> impl IntoView {
 
     let input_ref = create_node_ref::<Input>();
+    let autocomplete_ref = create_node_ref::<Div>();
 
     view! {
-        <div class="flex flex-col h-full w-full cursor-text">
+        <div
+            class="flex flex-col h-full w-full cursor-text relative"
+            on:click=move |_| {
+                let input = input_ref.get().expect("input_ref should be loaded");
+                input.focus().unwrap();
+            }
+        >
                 <CommandLine
                     log_signal=log_signal.0
                     set_log_signal=log_signal.1
@@ -36,10 +45,7 @@ fn StackLog(
     view! {
         <ul
             class="px-2"
-            on:click=move |_| {
-                let input = input_ref.get().expect("input_ref should be loaded");
-                input.focus().unwrap();
-            }
+
         >
             <For
                 each=log_signal
@@ -62,9 +68,6 @@ fn StackLog(
     }
 }
 
-
-
-
 #[component]
 fn CommandLine(
     log_signal: ReadSignal<Log>,
@@ -72,6 +75,23 @@ fn CommandLine(
     _input_ref: NodeRef<Input>
 ) -> impl IntoView {
     let (command_input, set_command_input) = create_signal("".to_string());
+    let (suggestions, set_suggestions) = create_signal(Vec::new());
+    let mut trie = Trie::new();
+
+    for command in Command::iter() {
+        if let Some(command) = Command::parse_command(&command) {
+            trie.insert(command.to_string().to_lowercase().as_str());
+        }
+    }
+
+    create_effect(move |_| {
+        let prefix = command_input.get().to_lowercase();
+        let trie_results = trie.search(&prefix);
+
+        set_suggestions.set(trie_results)
+    });
+
+
 
     let add_log = move || {
         set_log_signal.update(move |curr_log| {
@@ -108,12 +128,32 @@ fn CommandLine(
                     if ev.key() == "Enter" {
                         add_log();
                     }
+
+                    if ev.key() == "ArrowRight" {
+                        if suggestions.get().len() > 0 && suggestions.get().len() != 8 {
+                            set_command_input(suggestions.get()[0].clone())
+                        }
+                    }
                 }
                 prop:value=command_input
             />
         </div>
+        <div class="absolute top-14 left-0 z-10 w-[30em] bg-orange-300">
+            <Show when=move || suggestions.get().len() != 0 && suggestions.get().len() != 8 >
+            {
+                let autoc = suggestions.get().into_iter().map(|sug| {
+                    view! {
+                        <div class="p-1">
+                            <p>
+                                {sug}
+                            </p>
+                        </div>
+                    }
+                }).collect::<Vec<_>>();
+
+                {autoc}
+            }
+            </Show>
+        </div>
     }
 }
-
-
-

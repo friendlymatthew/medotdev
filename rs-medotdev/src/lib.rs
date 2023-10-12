@@ -1,6 +1,7 @@
 use std::collections::VecDeque;
 use cfg_if::cfg_if;
 
+pub mod autocomplete;
 pub mod app;
 pub mod error_template;
 pub mod fileserv;

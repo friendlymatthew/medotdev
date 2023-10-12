@@ -1,5 +1,7 @@
 use leptos::*;
-#[derive(PartialEq)]
+use strum_macros::EnumIter;
+
+#[derive(PartialEq, EnumIter, Debug)]
 pub enum Command {
     About,
     Picture,
@@ -26,6 +28,20 @@ impl Command {
             _ => Command::Rogue,
         }
     }
+
+    pub fn parse_command(cmd: &Command) -> Option<String> {
+        match cmd {
+            Command::About => Some("about".to_string()),
+            Command::Picture => Some("picture".to_string()),
+            Command::Education => Some("education".to_string()),
+            Command::Resume => Some("resume".to_string()),
+            Command::Contact => Some("contact".to_string()),
+            Command::Help => Some("help".to_string()),
+            Command::Clear => Some("clear".to_string()),
+            Command::Ls => Some("ls".to_string()),
+            _ => None
+        }
+    }
 }
 
 #[component]
@@ -43,7 +59,18 @@ pub fn command_factory(
 
                         </p>
                         <p>
-                            I am currently building projects in Rust. Previously, I interned at Toast, a restaurant point-of-sale company, where I worked on the waitlist and reservation service.
+                            I am currently building projects in Rust. You can view my work here:
+                            <a
+                                href="https://github.com/friendlymatthew"
+                                target="_blank"
+                                rel="noreferrer"
+                                class="underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-[#ffc832] decoration-4"
+                            >
+                                github.com/friendlymatthew
+                            </a>
+                        </p>
+                        <p>
+                            Previously, I interned at Toast, a restaurant point-of-sale company, where I worked on the waitlist and reservation service.
                         </p>
                         <br />
                         <p>
