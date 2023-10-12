@@ -4,7 +4,12 @@ module.exports = {
     files: ["*.html", "./src/**/*.rs"],
   },
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'lora': ['Lora', 'serif'],
+        'poppins': ['Poppins', 'sans-serif'],
+      }
+    },
   },
   plugins: [],
 }
