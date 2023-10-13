@@ -12,8 +12,9 @@ A terminal about me written in Typescript 🟦 and rewritten in Rust 🦀.
 
 <br/>
 <br/>
+Currently the `medotdev` project is deployed to Vercel. It uses client side rendering and Leptos. Written in Rust.
 
-Explore the `rs-medotdev` directory to dive into the Rust implementation. Check out the `ts-medotdev` directory for the Typescript version.
+Explore the `rs-medotdev` directory to dive into the server side rendered Rust implementation. Check out the `ts-medotdev` directory for the Typescript version.
 
 <br/>
 <br/>
