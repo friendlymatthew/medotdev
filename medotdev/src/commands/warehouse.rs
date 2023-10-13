@@ -311,14 +311,14 @@ pub fn command_factory(
                                             <li class="pl-2">
                                                 <div class="">
                                                     <div class="w-full flex flex-wrap justify-between">
-                                                        <div class="pb-1 sm:pb-0">
+                                                        <div class="">
                                                             <p class=format!(
                                                                 "{} font-medium",
                                                                 body_css,
                                                             )>{title}, {work}</p>
                                                             <p class="md:text-sm text-xs italic">{work_desc}</p>
                                                         </div>
-                                                        <p class="md:text-sm text-xs">{date}</p>
+                                                        <p class="py-1 sm:py-0 md:text-sm text-xs">{date}</p>
                                                     </div>
                                                 </div>
                                                 <ul class="text-sm md:text-base w-11/12 md:w-5/6">
