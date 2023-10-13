@@ -53,6 +53,24 @@ lazy_static! {
     static ref CURRENT_INDEX: Mutex<usize> = Mutex::new(0);
 }
 
+
+pub enum Color {
+    Yellow,
+    Purple,
+    Red,
+    Green,
+}
+impl Color {
+    fn hex(&self) -> &'static str {
+        match *self {
+            Color::Yellow => "#ffc832",
+            Color::Purple => "#2e2459",
+            Color::Green => "#0b7261",
+            Color::Red => "#a72145",
+        }
+    }
+}
+
 #[component]
 pub fn command_factory(
     curr_command: String
@@ -60,9 +78,14 @@ pub fn command_factory(
     let command = Command::from_str(&curr_command);
     let title_css = "md:text-xl text-lg";
     let body_css = "md:text-lg text-base";
+    let bro_css = "md:text-base text-sm";
+    let link_css = "underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-4";
+
+
+
     match command {
         Command::Now => {
-            let title = "What I'm doing now";
+            let title = "What I'm doing ";
             let last_updated = "Last updated October 15, 2023";
 
             let content = [
@@ -74,7 +97,20 @@ pub fn command_factory(
 
             view! {
                 <div class="space-y-2">
-                    <p class=format!("font-medium {}", title_css)>{title}</p>
+                    <p class=format!(
+                        "font-medium {}",
+                        title_css,
+                    )>
+                        {title}
+                        <a
+                            href="https://nownownow.com/about"
+                            target="_blank"
+                            rel="noreferrer"
+                            class=format!("{} decoration-[{}]", link_css, Color::Green.hex())
+                        >
+                            now
+                        </a>
+                    </p>
                     <ul class="pl-2">
 
                         {
@@ -99,7 +135,6 @@ pub fn command_factory(
                     <div class="px-1 md:w-2/3">
                         <p>
                             Hello! I am a recent graduate, software engineer, and open source contributor.
-
                         </p>
                         <br/>
                         <p>
@@ -108,7 +143,7 @@ pub fn command_factory(
                                 href="https://github.com/friendlymatthew"
                                 target="_blank"
                                 rel="noreferrer"
-                                class="underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-[#ffc832] decoration-4"
+                                class=format!("{} decoration-[{}]", link_css, Color::Purple.hex())
                             >
                                 github.com/friendlymatthew.
                             </a>
@@ -124,7 +159,7 @@ pub fn command_factory(
                                 href="https://www.nass.usda.gov/Publications/Highlights/2019/2017Census_Farm_Producers.pdf"
                                 target="_blank"
                                 rel="noreferrer"
-                                class="underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-[#2e2459] decoration-4"
+                                class=format!("{} decoration-[{}]", link_css, Color::Yellow.hex())
                             >
                                 Our farmers are aging
                             </a>
@@ -137,7 +172,7 @@ pub fn command_factory(
                                 href="https://www.youtube.com/watch?v=2wGuHHY11SM"
                                 target="_blank"
                                 rel="noreferrer"
-                                class="underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-[#0b7261] decoration-4"
+                                class=format!("{} decoration-[{}]", link_css, Color::Green.hex())
                             >
                                 The Eagles
                             </a> , and
@@ -145,7 +180,7 @@ pub fn command_factory(
                                 href="https://www.youtube.com/watch?v=ELoXiuDA_sQ"
                                 target="_blank"
                                 rel="noreferrer"
-                                class="underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-[#a72145] decoration-4"
+                                class=format!("{} decoration-[{}]", link_css, Color::Red.hex())
                             >
                                 Norm.
                             </a>
@@ -155,7 +190,6 @@ pub fn command_factory(
             }
         }
         Command::Picture => {
-
             let images = [
                 ("boulder", "Harpers Ferry, WV"),
                 ("momsis", "Graduation at Wes"),
@@ -174,14 +208,20 @@ pub fn command_factory(
 
             let (image_name, alt_text) = images[index];
 
+            let image_css = "w-[20em]";
             view! {
                 <div class="">
-                    <picture class="">
+                    <picture>
                         <source
-                            srcset=format!("public/webpg/{}.webp", image_name)
+                            srcset=format!("webpg/{}.webp", image_name)
+                            class=format!("{}", image_css)
                             type="image/webp"
                         />
-                        <img src=format!("public/pngs/{}.png", image_name) alt=alt_text/>
+                        <img
+                            class=format!("{}", image_css)
+                            src=format!("pngs/{}.png", image_name)
+                            alt=alt_text
+                        />
                     </picture>
                 </div>
             }
@@ -199,9 +239,116 @@ pub fn command_factory(
             }
         }
         Command::Resume => {
-            view! { <div>Resume</div> }
+            let experience = [
+                (
+                    "Open Source Contributor",
+                    "Aug 2023 - Now",
+                    "Mdbook i18n, Twenty",
+                    "Mdbook-i18n provides translation support for markdown textbooks in Rust. Twenty is a modern CRM with a Notion-like feel.",
+                    vec![
+                        "Wrote standalone binaries that extracts and translates markdown files",
+                        "Built out unselect feature for tables and kanban boards, improving user experience and workflow",
+                        "Improved photo uploader by integrating GraphQL Apollo upload controller and displaying upload errors"
+                    ]
+                ),
+                (
+                    "Software Engineer Intern",
+                    "June 2023 - Aug 2023",
+                    "Toast",
+                    "Toast is a restaurant point of sales company. Toast Tables is a waitlist and reservations service.",
+                    vec![
+                        "Built deposit booking and 'table ready' SMS notifications using Apache Pulsar and Twilio",
+                        "Fixed critical bug in waitlist time estimator that incorrectly displayed 0 min wait times during restaurant service",
+                        "Reduced API requests by revamping booking sidebar resulting in $5,000 in monthly savings",
+                        "Refactored SMS service and implemented Sonarqube compliance by reducing cognitive complexity and raising test coverage from 22% to 92%",
+                        "Developed product usage panel that tracks and informs free-tier restaurants of monthly booking quotas",
+                        "Extended DateTime library and refactored codebase to compute precise restaurant closeout time",
+                        "Solved customer care bugs, using Splunk and Datadog to debug and monitor production systems"
+                    ]
+                ),
+                (
+                    "Founder",
+                    "April 2023 - Now",
+                    "XYZ",
+                    "XYZ is an end of school tradition where people send messages, play a matching game, and say goodbye.",
+                    vec![
+                        "Architected and built 1:1 social chat platform; lead 3-person engineering team and managed 10-person team",
+                        "Managed viral growth, handled 783 users with 1200+ messages corresponding and 200+ chat rooms created daily",
+                        "Scaled product with Vercel CI/CD, rolled out key features: message encryption, notifications, community board, user blocking, confetti animations, chat room deletion, chat harassment policing",
+                    ]
+                ),
+                (
+                    "Software Engineer I",
+                    "Sept. 2021 - Sept. 2022",
+                    "Wesleyan Media Project",
+                    "WMP is a political advertising research lab",
+                    vec![
+                        "Engineered data labeling platform streamlining task delegation and data annotation for ML models",
+                        "Wrote tooling using Facebook ad data, mapped state-by-state campaign spending's for the 2020 US presidential election, tabled data, and charted custom choropleth scale maps",
+                        "Resolved storage and speed inefficiencies by migrating to cloud microservice and rebuilding lab tools",
+                        "Automated administrator duties by configuring IAM roles, managing CloudWatch logs, and curating billing invoices"
+                    ]
+                )
+            ];
+
+            let teaching = [
+                (
+                    "Wesleyan University Teaching Assistant",
+                    "QAC 239 - Machine Learning Proseminar",
+                    "Jan. 2023 - May 2023"
+                )
+            ];
+            view! {
+                <div>
+                    <div>
+                        <p class=format!("font-semibold pb-1 {}", title_css)>Work Experience</p>
+                        <ul class="space-y-2">
+
+                            {
+                                let content = experience
+                                    .into_iter()
+                                    .map(|(title, date, work, work_desc, bullets)| {
+                                        view! {
+                                            <li class="pl-2 space-y-2">
+                                                <div class="">
+                                                    <div class="w-full flex justify-between">
+                                                        <div>
+                                                            <p class=format!(
+                                                                "{} font-medium",
+                                                                body_css,
+                                                            )>{title}, {work}</p>
+                                                            <p class="md:text-sm text-xs italic">{work_desc}</p>
+                                                        </div>
+                                                        <p class="md:text-sm text-xs">{date}</p>
+                                                    </div>
+                                                </div>
+                                                <ul class="text-sm md:text-base">
+
+                                                    {
+                                                        let detail = bullets
+                                                            .into_iter()
+                                                            .map(|b| {
+                                                                view! { <li>- {b}</li> }
+                                                            })
+                                                            .collect::<Vec<_>>();
+                                                        detail
+                                                    }
+
+                                                </ul>
+                                            </li>
+                                        }
+                                    })
+                                    .collect::<Vec<_>>();
+                                content
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            }
         }
         Command::Contact => {
+            let link_padding_css = "italic font-semibold";
             view! {
                 <div class=format!("{}", title_css)>
                     <p>You can reach me via:</p>
@@ -212,8 +359,14 @@ pub fn command_factory(
                                 href="mailto:matthewkmkim@gmail.com"
                                 target="_blank"
                                 rel="noreferrer"
-                                class="italic font-semibold underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-[#2e2459] decoration-4"
+                                class=format!(
+                                    "{} {} decoration-[{}]",
+                                    link_padding_css,
+                                    link_css,
+                                    Color::Green.hex(),
+                                )
                             >
+
                                 matthewkmkim@gmail.com
                             </a>
                         </p>
@@ -223,8 +376,14 @@ pub fn command_factory(
                                 href="https://linkedin.com/in/mat-thew"
                                 target="_blank"
                                 rel="noreferrer"
-                                class="italic font-semibold underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-[#0b7261] decoration-4"
+                                class=format!(
+                                    "{} {} decoration-[{}]",
+                                    link_padding_css,
+                                    link_css,
+                                    Color::Purple.hex(),
+                                )
                             >
+
                                 /in/mat-thew
                             </a>
                         </p>
@@ -233,7 +392,6 @@ pub fn command_factory(
             }
         }
         Command::Help => {
-            let title = "Commands";
             let commands = [
                 ("now", "Inspired by Sean McArthur and Derek Siver's", Some(("https://nownownow.com/about", "/now"))),
                 ("about", "Quick excerpt about me", None),
@@ -247,47 +405,103 @@ pub fn command_factory(
             ];
 
             view! {
-                <div>
-                    <div class=format!("{} font-medium", title_css)>
-                        <p>{title}</p>
+                <div class="space-y-4">
+                    <div>
+                        <div class=format!("{} font-medium", title_css)>
+                            <p>Actions</p>
+                        </div>
+                        <div class=format!(
+                            "{}",
+                            body_css,
+                        )>
+
+                            {
+                                let content = [
+                                    "You can type commands and use the right arrow key to autocomplete recognized commands.",
+                                    "Don't want to type? Click on any of the commands to the left.",
+                                ]
+                                    .into_iter()
+                                    .map(|phr| {
+                                        view! { <p>{phr}</p> }
+                                    })
+                                    .collect::<Vec<_>>();
+                                content
+                            }
+
+                        </div>
                     </div>
-                    <ul class=format!(
-                        "space-y-2 {}",
-                        body_css,
-                    )>
+                    <div>
+                        <div class=format!("{} font-medium", title_css)>
+                            <p>Commands</p>
+                        </div>
+                        <ul class=format!(
+                            "space-y-2 {}",
+                            body_css,
+                        )>
+
+                            {
+                                let help_dash = commands
+                                    .into_iter()
+                                    .map(|(cmd, desc, link)| {
+                                        view! {
+                                            <li class="grid grid-cols-3 md:grid-cols-5 lg:w-[36em]">
+                                                <div>
+                                                    <p>{cmd}</p>
+                                                </div>
+                                                <div class="col-span-2 md:col-span-4">
+                                                    <p class="">
+                                                        {desc} {" "} <Show when=move || link.is_some()>
+                                                            <a
+                                                                href=link.unwrap().0
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                class=format!(
+                                                                    "{} decoration-[{}]",
+                                                                    link_css,
+                                                                    Color::Red.hex(),
+                                                                )
+                                                            >
+
+                                                                {link.unwrap().1}
+                                                            </a>
+
+                                                        </Show>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        }
+                                    })
+                                    .collect::<Vec<_>>();
+                                help_dash
+                            }
+
+                        </ul>
+                    </div>
+                    <div class="text-base md:text-lg">
 
                         {
-                            let help_dash = commands
-                                .into_iter()
-                                .map(|(cmd, desc, link)| {
-                                    view! {
-                                        <li class="grid grid-cols-3 md:grid-cols-5 lg:w-[36em]">
-                                            <div>
-                                                <p>{cmd}</p>
-                                            </div>
-                                            <div class="col-span-2 md:col-span-4">
-                                                <p class="">
-                                                    {desc} {" "} <Show when=move || link.is_some()>
-                                                        <a
-                                                            href=link.unwrap().0
-                                                            target="_blank"
-                                                            rel="noreferrer"
-                                                            class="underline hover:decoration-dotted decoration-4 underline-offset-4 decoration-[#0b7261]"
-                                                        >
-                                                            {link.unwrap().1}
-                                                        </a>
+                            let ps = "For anyone interested, here's the ";
+                            view! {
+                                <p>
+                                    {ps}
+                                    <a
+                                        class=format!(
+                                            "{} decoration-[{}]",
+                                            link_css,
+                                            Color::Purple.hex(),
+                                        )
 
-                                                    </Show>
-                                                </p>
-                                            </div>
-                                        </li>
-                                    }
-                                })
-                                .collect::<Vec<_>>();
-                            help_dash
+                                        href="https://github.com/friendlymatthew/medotdev"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        source code
+                                    </a>
+                                </p>
+                            }
                         }
 
-                    </ul>
+                    </div>
                 </div>
             }
         }
@@ -318,3 +532,4 @@ pub fn command_factory(
         }
     }
 }
+
