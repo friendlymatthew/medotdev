@@ -302,13 +302,13 @@ pub fn command_factory(
                 <div class="space-y-4">
                     <div>
                         <p class=format!("font-semibold pb-1 {}", title_css)>Work Experience</p>
-                        <ul class="space-y-2">
+                        <ul class="space-y-4">
                             {
                                 let content = experience
                                     .into_iter()
                                     .map(|(title, date, work, work_desc, bullets)| {
                                         view! {
-                                            <li class="pl-2 space-y-2">
+                                            <li class="pl-2">
                                                 <div class="">
                                                     <div class="w-full flex flex-wrap justify-between">
                                                         <div class="pb-1 sm:pb-0">

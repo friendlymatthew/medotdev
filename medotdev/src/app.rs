@@ -48,7 +48,7 @@ fn HomePage() -> impl IntoView {
 
     view! {
         <main class="flex justify-center h-screen w-screen">
-            <div class="my-2 flex-none md:flex w-11/12 md:w-10/12 md:divide-x-2 border-x-2 md:border-l-0 md:border-r-2">
+            <div class="my-2 flex-none w-full md:flex w-11/12 md:w-10/12 md:divide-x-2 border-x-2 md:border-l-0 md:border-r-2">
                 <Sidebar set_log_signal=set_log/>
                 <Terminal log_signal=(log, set_log)/>
             </div>
