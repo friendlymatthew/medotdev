@@ -303,6 +303,7 @@ pub fn command_factory(
                     <div>
                         <p class=format!("font-semibold pb-1 {}", title_css)>Work Experience</p>
                         <ul class="space-y-4">
+
                             {
                                 let content = experience
                                     .into_iter()
@@ -312,10 +313,10 @@ pub fn command_factory(
                                                 <div class="">
                                                     <div class="w-full flex flex-wrap justify-between">
                                                         <div class="">
-                                                            <p class=format!(
-                                                                "{} font-medium",
-                                                                body_css,
-                                                            )>{title}, {work}</p>
+                                                            <div class=format!("flex {} font-medium", body_css)>
+                                                                <p class="font-normal">{title}</p>
+                                                                <p>, {work}</p>
+                                                            </div>
                                                             <p class="md:text-sm text-xs italic">{work_desc}</p>
                                                         </div>
                                                         <p class="py-1 sm:py-0 md:text-sm text-xs">{date}</p>
@@ -340,29 +341,33 @@ pub fn command_factory(
                                     .collect::<Vec<_>>();
                                 content
                             }
+
                         </ul>
                     </div>
                     <div>
                         <p class=format!("font-semibold pb-1 {}", title_css)>Teaching Experience</p>
                         <ul class="space-y-2">
+
                             {
-                                let content = teaching.into_iter().map(|(title, class, date)| {
-                                view! {
-                                    <li class="pl-2 space-y-2">
-                                        <div class="space-y-1">
-                                            <div class="w-full flex flex-wrap items-end justify-between">
-                                                <p>{title}</p>
-                                                <p class="md:text-sm text-xs">{date}</p>
-                                            </div>
-                                            <p>
-                                                {class}
-                                            </p>
-                                        </div>
-                                    </li>
-                                }
-                                }).collect::<Vec<_>>();
+                                let content = teaching
+                                    .into_iter()
+                                    .map(|(title, class, date)| {
+                                        view! {
+                                            <li class="pl-2 space-y-2">
+                                                <div class="space-y-1">
+                                                    <div class="w-full flex flex-wrap items-end justify-between">
+                                                        <p>{title}</p>
+                                                        <p class="md:text-sm text-xs">{date}</p>
+                                                    </div>
+                                                    <p>{class}</p>
+                                                </div>
+                                            </li>
+                                        }
+                                    })
+                                    .collect::<Vec<_>>();
                                 content
                             }
+
                         </ul>
                     </div>
                 </div>
