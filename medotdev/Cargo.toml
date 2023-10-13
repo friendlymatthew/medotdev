@@ -1,0 +1,19 @@
+[package]
+name = "medotdev"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+leptos = { version = "0.5.1", features = ["csr", "nightly"] }
+leptos_meta = "0.5.1"
+leptos_router = { version = "0.5.1", features = ["csr"] }
+log = "0.4.20"
+
+wasm-bindgen = { version = "0.2" }
+console_log = { version = "1"}
+console_error_panic_hook = { version = "0.1"}
+strum = { version = "0.25.0", features = [] }
+strum_macros = "0.25.2"
+lazy_static = "1.4.0"

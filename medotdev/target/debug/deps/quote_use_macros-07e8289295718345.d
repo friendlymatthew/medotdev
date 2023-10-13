@@ -1,0 +1,10 @@
+/Users/matthew/Desktop/me/medotdev/target/debug/deps/libquote_use_macros-07e8289295718345.dylib: /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/lib.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/use_parser.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/core.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/std.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/2021.rs
+
+/Users/matthew/Desktop/me/medotdev/target/debug/deps/quote_use_macros-07e8289295718345.d: /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/lib.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/use_parser.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/core.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/std.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/2021.rs
+
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/lib.rs:
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude.rs:
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/use_parser.rs:
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/core.rs:
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/std.rs:
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-use-macros-0.7.2/src/prelude/2021.rs:

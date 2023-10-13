@@ -1,0 +1,11 @@
+/Users/matthew/Desktop/me/medotdev/target/wasm32-unknown-unknown/debug/deps/libciborium_ll-576e4f5154ae4711.rmeta: /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/lib.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/dec.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/enc.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/hdr.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/seg.rs
+
+/Users/matthew/Desktop/me/medotdev/target/wasm32-unknown-unknown/debug/deps/libciborium_ll-576e4f5154ae4711.rlib: /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/lib.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/dec.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/enc.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/hdr.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/seg.rs
+
+/Users/matthew/Desktop/me/medotdev/target/wasm32-unknown-unknown/debug/deps/ciborium_ll-576e4f5154ae4711.d: /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/lib.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/dec.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/enc.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/hdr.rs /Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/seg.rs
+
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/lib.rs:
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/dec.rs:
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/enc.rs:
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/hdr.rs:
+/Users/matthew/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ciborium-ll-0.2.1/src/seg.rs:

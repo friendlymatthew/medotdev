@@ -1,0 +1,5 @@
+# Trunk.toml
+
+[[copy]]
+source = "public"
+destination = "dist/public"
