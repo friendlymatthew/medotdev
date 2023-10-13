@@ -299,11 +299,10 @@ pub fn command_factory(
                 )
             ];
             view! {
-                <div>
+                <div class="space-y-4">
                     <div>
                         <p class=format!("font-semibold pb-1 {}", title_css)>Work Experience</p>
                         <ul class="space-y-2">
-
                             {
                                 let content = experience
                                     .into_iter()
@@ -311,8 +310,8 @@ pub fn command_factory(
                                         view! {
                                             <li class="pl-2 space-y-2">
                                                 <div class="">
-                                                    <div class="w-full flex justify-between">
-                                                        <div>
+                                                    <div class="w-full flex flex-wrap justify-between">
+                                                        <div class="pb-1 sm:pb-0">
                                                             <p class=format!(
                                                                 "{} font-medium",
                                                                 body_css,
@@ -322,7 +321,7 @@ pub fn command_factory(
                                                         <p class="md:text-sm text-xs">{date}</p>
                                                     </div>
                                                 </div>
-                                                <ul class="text-sm md:text-base">
+                                                <ul class="text-sm md:text-base w-11/12 md:w-5/6">
 
                                                     {
                                                         let detail = bullets
@@ -341,7 +340,29 @@ pub fn command_factory(
                                     .collect::<Vec<_>>();
                                 content
                             }
-
+                        </ul>
+                    </div>
+                    <div>
+                        <p class=format!("font-semibold pb-1 {}", title_css)>Teaching Experience</p>
+                        <ul class="space-y-2">
+                            {
+                                let content = teaching.into_iter().map(|(title, class, date)| {
+                                view! {
+                                    <li class="pl-2 space-y-2">
+                                        <div class="space-y-1">
+                                            <div class="w-full flex flex-wrap items-end justify-between">
+                                                <p>{title}</p>
+                                                <p class="md:text-sm text-xs">{date}</p>
+                                            </div>
+                                            <p>
+                                                {class}
+                                            </p>
+                                        </div>
+                                    </li>
+                                }
+                                }).collect::<Vec<_>>();
+                                content
+                            }
                         </ul>
                     </div>
                 </div>

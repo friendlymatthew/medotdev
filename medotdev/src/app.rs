@@ -15,8 +15,8 @@ pub fn App() -> impl IntoView {
         <Router>
             <main>
                 <Routes>
-                    <Route path="" view=HomePage/>
-                    <Route path=":cmd" view=HomePage/>
+                    <Route path="/" view=HomePage/>
+                    <Route path="/:cmd" view=HomePage/>
                 </Routes>
             </main>
         </Router>
