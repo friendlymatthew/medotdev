@@ -60,7 +60,6 @@ pub fn command_factory(
     let command = Command::from_str(&curr_command);
     let title_css = "md:text-xl text-lg";
     let body_css = "md:text-lg text-base";
-    let bro_css = "md:text-base text-sm";
     let link_css = "underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-4";
 
 
@@ -294,9 +293,12 @@ pub fn command_factory(
                                                 <div class="">
                                                     <div class="w-full flex flex-wrap justify-between">
                                                         <div class="">
-                                                            <div class=format!("flex {} font-medium", body_css)>
+                                                            <div class=format!(
+                                                                "flex flex-wrap {} font-medium space-x-1",
+                                                                body_css,
+                                                            )>
                                                                 <p class="font-normal">{title}</p>
-                                                                <p>, {work}</p>
+                                                                <p> {work}</p>
                                                             </div>
                                                             <p class="md:text-sm text-xs italic">{work_desc}</p>
                                                         </div>
@@ -460,10 +462,7 @@ pub fn command_factory(
                                                                 href=link.unwrap().0
                                                                 target="_blank"
                                                                 rel="noreferrer"
-                                                                class=format!(
-                                                                    "{} decoration-[#a72145]",
-                                                                    link_css,
-                                                                )
+                                                                class=format!("{} decoration-[#a72145]", link_css)
                                                             >
 
                                                                 {link.unwrap().1}
@@ -489,10 +488,8 @@ pub fn command_factory(
                                 <p>
                                     {ps}
                                     <a
-                                        class=format!(
-                                            "{} decoration-[#2e2459]",
-                                            link_css
-                                        )
+                                        class=format!("{} decoration-[#2e2459]", link_css)
+
                                         href="https://github.com/friendlymatthew/medotdev"
                                         target="_blank"
                                         rel="noreferrer"
