@@ -53,24 +53,6 @@ lazy_static! {
     static ref CURRENT_INDEX: Mutex<usize> = Mutex::new(0);
 }
 
-
-pub enum Color {
-    Yellow,
-    Purple,
-    Red,
-    Green,
-}
-impl Color {
-    fn hex(&self) -> &'static str {
-        match *self {
-            Color::Yellow => "#ffc832",
-            Color::Purple => "#2e2459",
-            Color::Green => "#0b7261",
-            Color::Red => "#a72145",
-        }
-    }
-}
-
 #[component]
 pub fn command_factory(
     curr_command: String
@@ -80,7 +62,6 @@ pub fn command_factory(
     let body_css = "md:text-lg text-base";
     let bro_css = "md:text-base text-sm";
     let link_css = "underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-4";
-
 
 
     match command {
@@ -106,7 +87,7 @@ pub fn command_factory(
                             href="https://nownownow.com/about"
                             target="_blank"
                             rel="noreferrer"
-                            class=format!("{} decoration-[{}]", link_css, Color::Green.hex())
+                            class=format!("{} decoration-[#0b7261]", link_css)
                         >
                             now
                         </a>
@@ -143,7 +124,7 @@ pub fn command_factory(
                                 href="https://github.com/friendlymatthew"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!("{} decoration-[{}]", link_css, Color::Purple.hex())
+                                class=format!("{} decoration-[#2e2459]", link_css)
                             >
                                 github.com/friendlymatthew.
                             </a>
@@ -159,7 +140,7 @@ pub fn command_factory(
                                 href="https://www.nass.usda.gov/Publications/Highlights/2019/2017Census_Farm_Producers.pdf"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!("{} decoration-[{}]", link_css, Color::Yellow.hex())
+                                class=format!("{} decoration-[#ffc832]", link_css)
                             >
                                 Our farmers are aging
                             </a>
@@ -172,7 +153,7 @@ pub fn command_factory(
                                 href="https://www.youtube.com/watch?v=2wGuHHY11SM"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!("{} decoration-[{}]", link_css, Color::Green.hex())
+                                class=format!("{} decoration-[#0b7261]", link_css)
                             >
                                 The Eagles
                             </a> , and
@@ -180,7 +161,7 @@ pub fn command_factory(
                                 href="https://www.youtube.com/watch?v=ELoXiuDA_sQ"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!("{} decoration-[{}]", link_css, Color::Red.hex())
+                                class=format!("{} decoration-[#a72145]", link_css)
                             >
                                 Norm.
                             </a>
@@ -386,10 +367,9 @@ pub fn command_factory(
                                 target="_blank"
                                 rel="noreferrer"
                                 class=format!(
-                                    "{} {} decoration-[{}]",
+                                    "{} {} decoration-[#0b7261]",
                                     link_padding_css,
                                     link_css,
-                                    Color::Green.hex(),
                                 )
                             >
 
@@ -403,10 +383,9 @@ pub fn command_factory(
                                 target="_blank"
                                 rel="noreferrer"
                                 class=format!(
-                                    "{} {} decoration-[{}]",
+                                    "{} {} decoration-[#2e2459]",
                                     link_padding_css,
                                     link_css,
-                                    Color::Purple.hex(),
                                 )
                             >
 
@@ -482,9 +461,8 @@ pub fn command_factory(
                                                                 target="_blank"
                                                                 rel="noreferrer"
                                                                 class=format!(
-                                                                    "{} decoration-[{}]",
+                                                                    "{} decoration-[#a72145]",
                                                                     link_css,
-                                                                    Color::Red.hex(),
                                                                 )
                                                             >
 
@@ -512,11 +490,9 @@ pub fn command_factory(
                                     {ps}
                                     <a
                                         class=format!(
-                                            "{} decoration-[{}]",
-                                            link_css,
-                                            Color::Purple.hex(),
+                                            "{} decoration-[#2e2459]",
+                                            link_css
                                         )
-
                                         href="https://github.com/friendlymatthew/medotdev"
                                         target="_blank"
                                         rel="noreferrer"
