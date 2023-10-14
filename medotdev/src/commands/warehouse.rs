@@ -119,7 +119,7 @@ pub fn command_factory(
                         </p>
                         <br/>
                         <p>
-                            I am pasionate about Rust and the community, you can see my work here:
+                            I am passionate about Rust and the community, you can see my work here:
                             <a
                                 href="https://github.com/friendlymatthew"
                                 target="_blank"

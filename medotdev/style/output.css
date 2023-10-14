@@ -826,24 +826,20 @@ video {
   text-decoration-line: underline;
 }
 
-.decoration-\[\#ffc832\] {
-  text-decoration-color: #ffc832;
-}
-
-.decoration-\[\{\}\] {
-  text-decoration-color: {};
-}
-
-.decoration-\[\#a72145\] {
-  text-decoration-color: #a72145;
-}
-
 .decoration-\[\#0b7261\] {
   text-decoration-color: #0b7261;
 }
 
 .decoration-\[\#2e2459\] {
   text-decoration-color: #2e2459;
+}
+
+.decoration-\[\#a72145\] {
+  text-decoration-color: #a72145;
+}
+
+.decoration-\[\#ffc832\] {
+  text-decoration-color: #ffc832;
 }
 
 .decoration-solid {
