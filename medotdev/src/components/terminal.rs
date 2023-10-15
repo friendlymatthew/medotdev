@@ -44,7 +44,7 @@ fn StackLog(
                 children=move |(_id, log)| {
                     let curr_command = log.clone();
                     view! {
-                        <li class="pb-12 text-lg font-poppins">
+                        <li class="pb-12 text-lg font-robotomono">
                             <p class="font-lora pb-2">> {log}</p>
                             <CommandFactory curr_command=curr_command/>
                         </li>
@@ -98,15 +98,13 @@ fn CommandLine(
     };
 
     view! {
-        <div class="w-full flex">
+        <div class="w-full flex relative">
             <input
                 ref=_input_ref
-                placeholder=move || {
-                    if log_signal.get().len() == 0 { "Enter help to get started" } else { "" }
-                }
 
                 type="text"
                 class="flex-grow border-transparent text-2xl p-2 focus:outline-none"
+
                 on:input=move |ev| {
                     set_command_input(event_target_value(&ev));
                 }
@@ -120,7 +118,7 @@ fn CommandLine(
                 }
 
                 on:keydown=move |ev| {
-                    if ev.key() == "Enter" {
+                    if ev.key() == "Enter" && command_input.get().len() != 0 {
                         add_log();
                     }
                     if ev.key() == "ArrowRight" {
@@ -132,6 +130,11 @@ fn CommandLine(
 
                 prop:value=command_input
             />
+            <Show when=move || command_input.get().is_empty()>
+                <div style="color: #2a3439;" class="absolute inset-y-0 left-2 flex items-center">
+                    <p class="text-2xl bg-current w-3 animate-blink">l</p>
+                </div>
+            </Show>
         </div>
         <div class="absolute top-14 left-0 z-10 w-[10em] bg-[#2a3439] text-white">
             <Show when=move || {

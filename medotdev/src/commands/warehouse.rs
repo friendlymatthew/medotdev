@@ -298,7 +298,7 @@ pub fn command_factory(
                                                                 body_css,
                                                             )>
                                                                 <p class="font-normal">{title}</p>
-                                                                <p> {work}</p>
+                                                                <p>{work}</p>
                                                             </div>
                                                             <p class="md:text-sm text-xs italic">{work_desc}</p>
                                                         </div>
