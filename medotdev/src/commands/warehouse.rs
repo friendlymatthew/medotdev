@@ -294,11 +294,11 @@ pub fn command_factory(
                                                     <div class="w-full flex flex-wrap justify-between">
                                                         <div class="">
                                                             <div class=format!(
-                                                                "flex flex-wrap {} font-medium space-x-1",
+                                                                "flex flex-wrap {} font-medium items-center space-x-4",
                                                                 body_css,
                                                             )>
                                                                 <p class="font-normal">{title}</p>
-                                                                <p>{work}</p>
+                                                                <p class="text-sm md:text-base italic">{work}</p>
                                                             </div>
                                                             <p class="md:text-sm text-xs italic">{work_desc}</p>
                                                         </div>

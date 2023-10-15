@@ -38,7 +38,7 @@ fn StaticList(
 
     view! {
         <ul class=format!(
-            "flex flex-wrap justify-center space-x-8 md:space-x-0 md:flex-col px-2 py-2 md:space-y-2 {}",
+            "flex flex-wrap justify-center space-x-8 md:space-x-0 md:flex-col px-8 md:px-2 py-2 md:space-y-2 {}",
             bg_color,
         )>{command_list}</ul>
     }
@@ -72,10 +72,10 @@ pub fn Sidebar(
                     rel="noreferrer"
                     class="group-hover:underline underline-offset-4 decoration-[3px] decoration-[#ffc832]"
                 >
-                    <p class="pl-2 text-3xl">Matthew Kim</p>
+                    <p class="pl-2 text-xl md:text-3xl">Matthew Kim</p>
                 </a>
             </div>
-            <div class="divide-y-2 text-xl">
+            <div class="divide-y-2 text-base md:text-xl">
                 <StaticList
                     bg_color="bg-[#0b7261]".to_string()
                     commands=me_commands
