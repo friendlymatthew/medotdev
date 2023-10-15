@@ -101,10 +101,8 @@ fn CommandLine(
         <div class="w-full flex relative">
             <input
                 ref=_input_ref
-
                 type="text"
                 class="flex-grow border-transparent text-2xl p-2 focus:outline-none"
-
                 on:input=move |ev| {
                     set_command_input(event_target_value(&ev));
                 }
@@ -149,18 +147,25 @@ fn CommandLine(
                         .map(|sug| {
                             let sug_clone = sug.clone();
                             view! {
-                                <div
-                                    class="p-1 cursor-pointer group"
-                                    on:click=move |_| {
-                                        let sugg = sug_clone.clone();
-                                        set_command_input.set(sugg);
-                                        add_log();
-                                    }
-                                >
-
-                                    <p class="group-hover:underline decoration-[2px] underline-offset-4 decoration-[#ffc832]">
+                                <div class="p-1 group flex justify-between items-center">
+                                    <p class="decoration-[2px] underline-offset-4 decoration-[#ffc832]">
                                         {sug.clone()}
                                     </p>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="2"
+                                        stroke="currentColor"
+                                        class="w-4 h-4"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                                        ></path>
+                                    </svg>
+
                                 </div>
                             }
                         })
