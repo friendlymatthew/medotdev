@@ -72,7 +72,7 @@ pub fn command_factory(
                 "taking time off to learn and build projects in Rust",
                 "writing a lexer, parser, diagrammer for the untyped lambda calculus",
                 "contributing to open source, building workflow tools to internationalize textbooks",
-                "planning a backpacking trip in New Hampshire",
+                "going on a backpacking trip in New Hampshire, seeking spirituality through nature",
             ];
 
             view! {
@@ -97,7 +97,7 @@ pub fn command_factory(
                             let content = content
                                 .into_iter()
                                 .map(|thing| {
-                                    view! { <li>{thing}</li> }
+                                    view! { <li>- {thing}</li> }
                                 })
                                 .collect::<Vec<_>>();
                             content
