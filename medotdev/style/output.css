@@ -586,6 +586,10 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
 }
@@ -596,6 +600,10 @@ video {
 
 .grid {
   display: grid;
+}
+
+.hidden {
+  display: none;
 }
 
 .h-4 {
@@ -636,6 +644,18 @@ video {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-5\/6 {
+  width: 83.333333%;
 }
 
 .flex-none {
@@ -707,6 +727,12 @@ video {
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-y-\[1rem\] > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
@@ -936,8 +962,16 @@ video {
     grid-column: span 4 / span 4;
   }
 
+  .md\:inline-block {
+    display: inline-block;
+  }
+
   .md\:flex {
     display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:w-10\/12 {
@@ -954,6 +988,10 @@ video {
 
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
   }
 
   .md\:grid-cols-5 {

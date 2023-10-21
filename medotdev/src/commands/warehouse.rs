@@ -66,13 +66,14 @@ pub fn command_factory(
     match command {
         Command::Now => {
             let title = "What I'm doing ";
-            let last_updated = "Last updated October 15, 2023";
+            let last_updated = "Last updated October 21, 2023";
 
-            let content = [
-                "taking time off to learn and build projects in Rust",
-                "writing a lexer, parser, diagrammer for the untyped lambda calculus",
-                "contributing to open source, building workflow tools to internationalize textbooks",
-                "going on a backpacking trip in New Hampshire, seeking spirituality through nature",
+            let content = vec![
+                ("taking time off to learn and build projects in Rust", None),
+                ("building a crate that generates a client-side Leptos web application with Tailwind and Vercel, inspired by `create-react-app` ", Some("https://crates.io/crates/create-leptos-csr-tw")),
+                ("writing a lexer, parser, diagrammer for the untyped lambda calculus", None),
+                ("contributing to open source, building workflow tools to internationalize textbooks", None),
+                ("went backpacking in New Hampshire, fall foliage has truly unfurled", None),
             ];
 
             view! {
@@ -91,13 +92,26 @@ pub fn command_factory(
                             now
                         </a>
                     </p>
-                    <ul class="pl-2">
+                    <ul class="pl-2 md:w-2/3 w-5/6 space-y-[1rem]">
 
                         {
                             let content = content
                                 .into_iter()
-                                .map(|thing| {
-                                    view! { <li>- {thing}</li> }
+                                .map(|(thing, link)| {
+                                    view! {
+                                        <li>
+                                            - {thing} <Show when=move || link.is_some()>
+                                                <a
+                                                    href=link.unwrap()
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    class=format!("{} decoration-[#ffc832]", link_css)
+                                                >
+                                                    See Project
+                                                </a>
+                                            </Show>
+                                        </li>
+                                    }
                                 })
                                 .collect::<Vec<_>>();
                             content
@@ -154,8 +168,8 @@ pub fn command_factory(
                                 rel="noreferrer"
                                 class=format!("{} decoration-[#0b7261]", link_css)
                             >
-                                The Eagles
-                            </a> , and
+                                The Eagles,
+                            </a> and
                             <a
                                 href="https://www.youtube.com/watch?v=ELoXiuDA_sQ"
                                 target="_blank"
@@ -339,7 +353,7 @@ pub fn command_factory(
                                             <li class="pl-2 space-y-2">
                                                 <div class="space-y-1">
                                                     <div class="w-full flex flex-wrap items-end justify-between">
-                                                        <p>{title}</p>
+                                                        <p class="text-sm md:text-base italic">{title}</p>
                                                         <p class="md:text-sm text-xs">{date}</p>
                                                     </div>
                                                     <p>{class}</p>
@@ -425,11 +439,22 @@ pub fn command_factory(
                             {
                                 let content = [
                                     "You can type commands and use the right arrow key to autocomplete recognized commands.",
-                                    "Don't want to type? Click on any of the commands to the left.",
+                                    "Don't want to type? Click on any of the commands ",
                                 ]
                                     .into_iter()
-                                    .map(|phr| {
-                                        view! { <p>{phr}</p> }
+                                    .enumerate()
+                                    .map(|(idx, phr)| {
+                                        view! {
+                                            <p>
+                                                <span>{phr}</span>
+
+                                                <Show when=move || idx == 1>
+                                                    <span class="hidden md:inline-block">to the left.</span>
+                                                    <span class="inline-block md:hidden">at the top.</span>
+                                                </Show>
+
+                                            </p>
+                                        }
                                     })
                                     .collect::<Vec<_>>();
                                 content
