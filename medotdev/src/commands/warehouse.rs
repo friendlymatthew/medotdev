@@ -1,6 +1,6 @@
-use std::sync::Mutex;
 use lazy_static::lazy_static;
 use leptos::*;
+use std::sync::Mutex;
 use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
 
@@ -44,7 +44,7 @@ impl Command {
             Command::Help => Some("help".to_string()),
             Command::Clear => Some("clear".to_string()),
             Command::Ls => Some("ls".to_string()),
-            _ => None
+            _ => None,
         }
     }
 }
@@ -54,14 +54,12 @@ lazy_static! {
 }
 
 #[component]
-pub fn command_factory(
-    curr_command: String
-) -> impl IntoView {
+pub fn command_factory(curr_command: String) -> impl IntoView {
     let command = Command::from_str(&curr_command);
     let title_css = "md:text-xl text-lg";
     let body_css = "md:text-lg text-base";
-    let link_css = "underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-4";
-
+    let link_css =
+        "underline hover:decoration-dotted decoration-solid underline-offset-4 decoration-4";
 
     match command {
         Command::Now => {
@@ -285,13 +283,11 @@ pub fn command_factory(
                 )
             ];
 
-            let teaching = [
-                (
-                    "Wesleyan University Teaching Assistant",
-                    "QAC 239 - Machine Learning Proseminar",
-                    "Jan. 2023 - May 2023"
-                )
-            ];
+            let teaching = [(
+                "Wesleyan University Teaching Assistant",
+                "QAC 239 - Machine Learning Proseminar",
+                "Jan. 2023 - May 2023",
+            )];
             view! {
                 <div class="space-y-4">
                     <div>
@@ -371,7 +367,6 @@ pub fn command_factory(
             }
         }
         Command::Contact => {
-            let link_padding_css = "italic font-semibold";
             view! {
                 <div class=format!("{}", title_css)>
                     <p>You can reach me via:</p>
@@ -382,11 +377,7 @@ pub fn command_factory(
                                 href="mailto:matthewkmkim@gmail.com"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!(
-                                    "{} {} decoration-[#0b7261]",
-                                    link_padding_css,
-                                    link_css,
-                                )
+                                class=format!("{} italic decoration-[#0b7261]", link_css)
                             >
 
                                 matthewkmkim@gmail.com
@@ -398,11 +389,7 @@ pub fn command_factory(
                                 href="https://linkedin.com/in/mat-thew"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!(
-                                    "{} {} decoration-[#2e2459]",
-                                    link_padding_css,
-                                    link_css,
-                                )
+                                class=format!("{} italic decoration-[#2e2459]", link_css)
                             >
 
                                 /in/mat-thew
@@ -414,9 +401,17 @@ pub fn command_factory(
         }
         Command::Help => {
             let commands = [
-                ("now", "Inspired by Sean McArthur and Derek Siver's", Some(("https://nownownow.com/about", "/now"))),
+                (
+                    "now",
+                    "Inspired by Sean McArthur and Derek Siver's",
+                    Some(("https://nownownow.com/about", "/now")),
+                ),
                 ("about", "Quick excerpt about me", None),
-                ("picture", "Slideshow of me in the wild with my friends", None),
+                (
+                    "picture",
+                    "Slideshow of me in the wild with my friends",
+                    None,
+                ),
                 ("education", "My formal education", None),
                 ("resume", "My CV", None),
                 ("contact", "My email and linkedin, happy to connect!", None),
@@ -530,13 +525,15 @@ pub fn command_factory(
             }
         }
         Command::Ls => {
-            let all_commands = Command::iter().map(|cmd| {
-                view! {
-                    <li>
-                        <p>{Command::parse_command(&cmd)}</p>
-                    </li>
-                }
-            }).collect::<Vec<_>>();
+            let all_commands = Command::iter()
+                .map(|cmd| {
+                    view! {
+                        <li>
+                            <p>{Command::parse_command(&cmd)}</p>
+                        </li>
+                    }
+                })
+                .collect::<Vec<_>>();
 
             view! {
                 <div class=format!("{}", title_css)>
@@ -556,4 +553,3 @@ pub fn command_factory(
         }
     }
 }
-

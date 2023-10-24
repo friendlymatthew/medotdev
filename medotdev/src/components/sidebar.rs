@@ -1,12 +1,8 @@
-use leptos::*;
 use crate::Log;
+use leptos::*;
 
 #[component]
-fn StaticList(
-    bg_color: String,
-    commands: Vec<String>,
-    set_log: WriteSignal<Log>,
-) -> impl IntoView {
+fn StaticList(bg_color: String, commands: Vec<String>, set_log: WriteSignal<Log>) -> impl IntoView {
     let command_list: Vec<_> = commands.into_iter().map(|cmd| {
         let cmd_copy = cmd.clone();
         view! {
@@ -45,10 +41,7 @@ fn StaticList(
 }
 
 #[component]
-pub fn Sidebar(
-    set_log_signal: WriteSignal<Log>
-) -> impl IntoView {
-
+pub fn Sidebar(set_log_signal: WriteSignal<Log>) -> impl IntoView {
     let me_commands = vec![
         "Now".to_string(),
         "About".to_string(),
@@ -58,10 +51,7 @@ pub fn Sidebar(
         "Contact".to_string(),
     ];
 
-    let terminal_commands = vec![
-        "Help".to_string(),
-        "Clear".to_string(),
-    ];
+    let terminal_commands = vec!["Help".to_string(), "Clear".to_string()];
 
     view! {
         <div class="lg:w-[20em] divide-y-2 text-white font-semibold font-poppins">

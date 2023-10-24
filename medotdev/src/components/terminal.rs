@@ -1,15 +1,12 @@
-use leptos::*;
-use leptos::html::{Div, Input};
 use crate::autocomplete::Trie;
 use crate::commands::warehouse::{Command, CommandFactory};
 use crate::Log;
+use leptos::html::{Div, Input};
+use leptos::*;
 use strum::IntoEnumIterator;
 
 #[component]
-pub fn Terminal(
-    log_signal: (ReadSignal<Log>, WriteSignal<Log>)
-) -> impl IntoView {
-
+pub fn Terminal(log_signal: (ReadSignal<Log>, WriteSignal<Log>)) -> impl IntoView {
     let input_ref = create_node_ref::<Input>();
     let _autocomplete_ref = create_node_ref::<Div>();
 
@@ -30,12 +27,8 @@ pub fn Terminal(
     }
 }
 
-
 #[component]
-fn StackLog(
-    log_signal: ReadSignal<Log>,
-    input_ref: NodeRef<Input>
-) -> impl IntoView {
+fn StackLog(log_signal: ReadSignal<Log>, input_ref: NodeRef<Input>) -> impl IntoView {
     view! {
         <ul class="px-2">
             <For
@@ -88,9 +81,7 @@ fn CommandLine(
             if curr_command.to_lowercase() == "clear" {
                 curr_log.clear()
             } else {
-                curr_log.push_front(
-                    (id, curr_command)
-                )
+                curr_log.push_front((id, curr_command))
             }
 
             set_command_input("".to_string());

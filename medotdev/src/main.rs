@@ -1,28 +1,27 @@
 mod app;
 pub mod autocomplete;
-use leptos_router::Params;
 use leptos_router::IntoParam;
+use leptos_router::Params;
 
 mod components {
     pub mod sidebar;
     pub mod terminal;
 }
 
-
 pub mod commands {
     pub mod warehouse;
 }
 
-use std::collections::VecDeque;
 use app::*;
 use leptos::*;
+use std::collections::VecDeque;
 
 type Item = (usize, String);
 pub type Log = VecDeque<Item>;
 
 #[derive(Params, PartialEq)]
 pub struct CmdParam {
-    cmd: Option<String>
+    cmd: Option<String>,
 }
 
 pub fn main() {

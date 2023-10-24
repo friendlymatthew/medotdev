@@ -1,9 +1,9 @@
+use crate::components::sidebar::Sidebar;
+use crate::components::terminal::Terminal;
+use crate::Log;
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
-use crate::Log;
-use crate::components::terminal::Terminal;
-use crate::components::sidebar::Sidebar;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -28,7 +28,7 @@ pub fn App() -> impl IntoView {
 fn HomePage() -> impl IntoView {
     let (log, set_log) = create_signal(Log::new());
 
-    let update_log = |cmd : Option<String>| {
+    let update_log = |cmd: Option<String>| {
         if let Some(cmd) = cmd {
             if cmd != "clear" && cmd.len() > 0 {
                 set_log.update(|curr_log| {
@@ -39,12 +39,9 @@ fn HomePage() -> impl IntoView {
     };
 
     let params = use_params_map();
-    let pcmd = move || {
-        params.with(|p| p.get("cmd").cloned().unwrap_or_default())
-    };
+    let pcmd = move || params.with(|p| p.get("cmd").cloned().unwrap_or_default());
 
     update_log(Some(pcmd()));
-
 
     view! {
         <main class="flex justify-center h-screen w-screen">
@@ -55,5 +52,3 @@ fn HomePage() -> impl IntoView {
         </main>
     }
 }
-
-
