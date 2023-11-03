@@ -4,6 +4,8 @@ use std::sync::Mutex;
 use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
 
+use crate::color_wheel::ColorWheel;
+
 #[derive(PartialEq, EnumIter, Debug)]
 pub enum Command {
     Now,
@@ -64,14 +66,17 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
     match command {
         Command::Now => {
             let title = "What I'm doing ";
-            let last_updated = "Last updated October 21, 2023";
+            let last_updated = "Last updated November 3rd, 2023";
 
             let content = vec![
-                ("taking time off to learn and build projects in Rust", None),
-                ("building a crate that generates a client-side Leptos web application with Tailwind and Vercel, inspired by `create-react-app` ", Some("https://crates.io/crates/create-leptos-csr-tw")),
-                ("writing a lexer, parser, diagrammer for the untyped lambda calculus", None),
-                ("contributing to open source, building workflow tools to internationalize textbooks", None),
-                ("went backpacking in New Hampshire, fall foliage has truly unfurled", None),
+                ("still learning and building projects in Rust with my free time", None),
+                ("struggling to leave my desk. I need to go outside", None),
+                ("starting work, very excited. Watched Office Space to prepare", None),
+                ("still eating bison pasta everyday. I did incorporate sourdough bread though", None),
+                ("built a crate that generates a client-side Leptos web application with Tailwind and Vercel, inspired by `create-react-app`", Some("https://crates.io/crates/create-leptos-csr-tw")),
+                ("building workflow tools to internationalize textbooks", Some("https://github.com/google/mdbook-i18n-helpers")),
+                ("playing civ 5, +100 desk time", None),
+                ("did I mention the sourdough bread?!?. This brand:", Some("https://essentialbaking.com/products/take-bake-sourdough"))
             ];
 
             view! {
@@ -90,7 +95,7 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                             now
                         </a>
                     </p>
-                    <ul class="pl-2 md:w-2/3 w-5/6 space-y-[1rem]">
+                    <ul class="pl-2 lg:w-2/3 w-11/12 space-y-[1rem]">
 
                         {
                             let content = content
@@ -98,14 +103,14 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                                 .map(|(thing, link)| {
                                     view! {
                                         <li>
-                                            - {thing} <Show when=move || link.is_some()>
+                                            - {thing}{"  "}<Show when=move || link.is_some()>
                                                 <a
                                                     href=link.unwrap()
                                                     target="_blank"
                                                     rel="noreferrer"
-                                                    class=format!("{} decoration-[#ffc832]", link_css)
+                                                    class=format!("{} italic decoration-[#ffc832] text-sm md:text-base", link_css)
                                                 >
-                                                    See Project
+                                                    Link
                                                 </a>
                                             </Show>
                                         </li>
@@ -122,11 +127,17 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
             }
         }
         Command::About => {
+            let mut color_wheel = ColorWheel::new();
             view! {
                 <div class=format!("w-full flex justify-center {}", title_css)>
                     <div class="px-1 md:w-2/3">
                         <p>
                             Hello! I am a recent graduate, software engineer, and open source contributor.
+                        </p>
+                        <br/>
+
+                        <p>
+                            {"I'm "} currently a software engineer at Angelswing, a drone startup company. Previously, I interned at Toast, a restaurant point-of-sale company, where I worked on the waitlist and reservation service.
                         </p>
                         <br/>
                         <p>
@@ -135,14 +146,10 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                                 href="https://github.com/friendlymatthew"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!("{} decoration-[#2e2459]", link_css)
+                                class=format!("{} decoration-[{}]", link_css, color_wheel.spit())
                             >
                                 github.com/friendlymatthew.
                             </a>
-                        </p>
-                        <br/>
-                        <p>
-                            Previously, I interned at Toast, a restaurant point-of-sale company, where I worked on the waitlist and reservation service.
                         </p>
                         <br/>
                         <p>
@@ -151,7 +158,7 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                                 href="https://www.nass.usda.gov/Publications/Highlights/2019/2017Census_Farm_Producers.pdf"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!("{} decoration-[#ffc832]", link_css)
+                                class=format!("{} decoration-[{}]", link_css, color_wheel.spit())
                             >
                                 Our farmers are aging
                             </a>
@@ -164,7 +171,7 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                                 href="https://www.youtube.com/watch?v=2wGuHHY11SM"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!("{} decoration-[#0b7261]", link_css)
+                                class=format!("{} decoration-[{}]", link_css, color_wheel.spit())
                             >
                                 The Eagles,
                             </a> and
@@ -172,7 +179,7 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                                 href="https://www.youtube.com/watch?v=ELoXiuDA_sQ"
                                 target="_blank"
                                 rel="noreferrer"
-                                class=format!("{} decoration-[#a72145]", link_css)
+                                class=format!("{} decoration-[{}]", link_css, color_wheel.spit())
                             >
                                 Norm.
                             </a>
@@ -260,7 +267,7 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                 ),
                 (
                     "Founder",
-                    "April 2023 - Now",
+                    "April 2023",
                     "XYZ",
                     "XYZ is an end of school tradition where people send messages, play a matching game, and say goodbye.",
                     vec![

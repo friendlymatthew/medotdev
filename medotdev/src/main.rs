@@ -3,12 +3,14 @@ pub mod autocomplete;
 use leptos_router::IntoParam;
 use leptos_router::Params;
 
+pub mod color_wheel;
+
 mod components {
     pub mod sidebar;
     pub mod terminal;
 }
 
-pub mod commands {
+mod commands {
     pub mod warehouse;
 }
 

@@ -17,3 +17,4 @@ console_error_panic_hook = { version = "0.1"}
 strum = { version = "0.25.0", features = [] }
 strum_macros = "0.25.2"
 lazy_static = "1.4.0"
+rand = "0.8.5"
