@@ -76,7 +76,7 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                 ("built a crate that generates a client-side Leptos web application with Tailwind and Vercel, inspired by `create-react-app`", Some("https://crates.io/crates/create-leptos-csr-tw")),
                 ("building workflow tools to internationalize textbooks", Some("https://github.com/google/mdbook-i18n-helpers")),
                 ("playing civ 5, +100 desk time", None),
-                ("did I mention the sourdough bread?!?. This brand:", Some("https://essentialbaking.com/products/take-bake-sourdough"))
+                ("did I mention the bread?!?. This brand:", Some("https://essentialbaking.com/products/take-bake-sourdough"))
             ];
 
             view! {
@@ -103,13 +103,17 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                                 .map(|(thing, link)| {
                                     view! {
                                         <li>
-                                            - {thing}{"  "}<Show when=move || link.is_some()>
+                                            - {thing} {"  "} <Show when=move || link.is_some()>
                                                 <a
                                                     href=link.unwrap()
                                                     target="_blank"
                                                     rel="noreferrer"
-                                                    class=format!("{} italic decoration-[#ffc832] text-sm md:text-base", link_css)
+                                                    class=format!(
+                                                        "{} italic decoration-[#ffc832] text-sm md:text-base",
+                                                        link_css,
+                                                    )
                                                 >
+
                                                     Link
                                                 </a>
                                             </Show>
@@ -137,7 +141,8 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                         <br/>
 
                         <p>
-                            {"I'm "} currently a software engineer at Angelswing, a drone startup company. Previously, I interned at Toast, a restaurant point-of-sale company, where I worked on the waitlist and reservation service.
+                            {"I'm "}
+                            currently a software engineer at Angelswing, a drone startup company. Previously, I interned at Toast, a restaurant point-of-sale company, where I worked on the waitlist and reservation service.
                         </p>
                         <br/>
                         <p>
@@ -291,7 +296,8 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
             ];
 
             let teaching = [(
-                "Wesleyan University Teaching Assistant",
+                "Teaching Assistant",
+                "Wesleyan University",
                 "QAC 239 - Machine Learning Proseminar",
                 "Jan. 2023 - May 2023",
             )];
@@ -351,15 +357,18 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                             {
                                 let content = teaching
                                     .into_iter()
-                                    .map(|(title, class, date)| {
+                                    .map(|(position, school, class, date)| {
                                         view! {
                                             <li class="pl-2 space-y-2">
                                                 <div class="space-y-1">
                                                     <div class="w-full flex flex-wrap items-end justify-between">
-                                                        <p class="text-sm md:text-base italic">{title}</p>
+                                                        <div class="text-sm md:text-base italic flex space-x-2">
+                                                            <p>{position} ,</p>
+                                                            <p>{school}</p>
+                                                        </div>
                                                         <p class="md:text-sm text-xs">{date}</p>
                                                     </div>
-                                                    <p>{class}</p>
+                                                    <p class="text-base md:text-lg">{class}</p>
                                                 </div>
                                             </li>
                                         }

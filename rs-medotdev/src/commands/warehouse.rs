@@ -178,7 +178,7 @@ pub fn command_factory(
                 <div class="md:w-[30em] w-3/4">
                     <picture>
                         <source srcset=format!("webpg/{}.webp", image_name) type="image/webp"/>
-                        <img src=format!("pngs/{}.png", image_name) alt=alt_text />
+                        <img src=format!("pngs/{}.png", image_name) alt=alt_text/>
                     </picture>
                 </div>
             }
