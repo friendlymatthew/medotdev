@@ -136,7 +136,7 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                 <div class=format!("w-full flex justify-center {}", title_css)>
                     <div class="px-1 md:w-2/3">
                         <p>
-                            Hello! I am a recent graduate, software engineer, and open source contributor.
+                            Hello! I am a recent graduate, software engineer, and open source contributor. {"I'm "} currently in New York City.
                         </p>
                         <br/>
 
