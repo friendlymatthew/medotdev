@@ -17,6 +17,7 @@ pub enum Command {
     Help,
     Clear,
     Rogue,
+    GradPic,
     Ls,
 }
 impl Command {
@@ -31,6 +32,7 @@ impl Command {
             "help" => Command::Help,
             "ls" => Command::Ls,
             "clear" => Command::Clear,
+            "gradpic" => Command::GradPic,
             _ => Command::Rogue,
         }
     }
@@ -46,6 +48,7 @@ impl Command {
             Command::Help => Some("help".to_string()),
             Command::Clear => Some("clear".to_string()),
             Command::Ls => Some("ls".to_string()),
+            Command::GradPic => Some("gradpic".to_string()),
             _ => None,
         }
     }
@@ -192,6 +195,29 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                     </div>
                 </div>
             }
+        }
+        Command::GradPic => {
+            let (image_name, alt_text) = ("momsis", "Graduation at Wes");
+
+            let image_css = "w-[20em]";
+
+            view! {
+                <div class="">
+                    <picture>
+                        <source
+                            srcset=format!("webpg/{}.webp", image_name)
+                            class=format!("{}", image_css)
+                            type="image/webp"
+                        />
+                        <img
+                            class=format!("{}", image_css)
+                            src=format!("pngs/{}.png", image_name)
+                            alt=alt_text
+                        />
+                    </picture>
+                </div>
+            }
+
         }
         Command::Picture => {
             let images = [

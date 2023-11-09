@@ -28,20 +28,28 @@ pub fn App() -> impl IntoView {
 fn HomePage() -> impl IntoView {
     let (log, set_log) = create_signal(Log::new());
 
-    let update_log = |cmd: Option<String>| {
-        if let Some(cmd) = cmd {
-            if cmd != "clear" && cmd.len() > 0 {
-                set_log.update(|curr_log| {
-                    curr_log.push_front((0, cmd.to_lowercase()));
-                })
+    let update_log = |cmds: Vec<String>| {
+        let start_id = log.get().len(); // Starting ID based on the current log length
+
+        for (index, cmd) in cmds.clone().into_iter().enumerate() {
+            if cmd != "clear" {
+                let id = start_id + cmds.len() - 1 - index;
+                set_log.update(move |curr_log| {
+                    curr_log.push_front((id, cmd.to_lowercase()));
+                });
             }
         }
     };
 
     let params = use_params_map();
-    let pcmd = move || params.with(|p| p.get("cmd").cloned().unwrap_or_default());
+    let pcmd = move || params.with(|p| {
+        p.get("cmd")
+            .map(|cmd| cmd.split('+').map(String::from).collect())
+            .unwrap_or_default()
+    });
 
-    update_log(Some(pcmd()));
+
+    update_log(pcmd());
 
     view! {
         <main class="flex justify-center h-screen w-screen">
