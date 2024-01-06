@@ -42,12 +42,13 @@ fn HomePage() -> impl IntoView {
     };
 
     let params = use_params_map();
-    let pcmd = move || params.with(|p| {
-        p.get("cmd")
-            .map(|cmd| cmd.split('+').map(String::from).collect())
-            .unwrap_or_default()
-    });
-
+    let pcmd = move || {
+        params.with(move |p| {
+            p.get("cmd")
+                .map(|cmd| cmd.split('+').map(String::from).collect())
+                .unwrap_or_default()
+        })
+    };
 
     update_log(pcmd());
 

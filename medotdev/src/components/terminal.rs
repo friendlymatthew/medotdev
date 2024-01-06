@@ -1,7 +1,8 @@
 use crate::autocomplete::Trie;
 use crate::commands::warehouse::{Command, CommandFactory};
 use crate::Log;
-use leptos::html::{Div, Input};
+use leptos::html::{Div, Input, Ul};
+use leptos::web_sys::HtmlUListElement;
 use leptos::*;
 use strum::IntoEnumIterator;
 
@@ -29,8 +30,17 @@ pub fn Terminal(log_signal: (ReadSignal<Log>, WriteSignal<Log>)) -> impl IntoVie
 
 #[component]
 fn StackLog(log_signal: ReadSignal<Log>, input_ref: NodeRef<Input>) -> impl IntoView {
+    let container_ref = create_node_ref::<Ul>();
+
+    create_effect(move |_| {
+        if let Some(container) = container_ref.get() {
+            println!("wef");
+            container.set_scroll_top(0);
+        }
+    });
+
     view! {
-        <ul class="px-2">
+        <ul ref={container_ref} class="px-2 overflow-y-auto">
             <For
                 each=log_signal
                 key=|log| log.0

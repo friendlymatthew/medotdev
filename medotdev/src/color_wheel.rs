@@ -1,11 +1,6 @@
 use rand::distributions::{Distribution, Uniform};
 
-const COLORS: [&'static str; 4] = [
-    "#2e2459",
-    "#ffc832",
-    "#0b7261",
-    "#a72145",
-];
+const COLORS: [&'static str; 4] = ["#2e2459", "#ffc832", "#0b7261", "#a72145"];
 
 pub struct ColorWheel {
     prev: Option<usize>,
@@ -30,12 +25,11 @@ impl ColorWheel {
                 }
 
                 new_index
-            },
+            }
             None => self.uniform.sample(&mut rng),
         };
 
         self.prev = Some(index);
         COLORS[index]
     }
-
 }

@@ -69,16 +69,13 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
     match command {
         Command::Now => {
             let title = "What I'm doing ";
-            let last_updated = "Last updated November 3rd, 2023";
+            let last_updated = "Last updated January 5, 2024";
 
             let content = vec![
-                ("still learning and building projects in Rust with my free time", None),
-                ("struggling to leave my desk. I need to go outside", None),
-                ("starting work, very excited. Watched Office Space to prepare", None),
-                ("still eating bison pasta everyday. I did incorporate sourdough bread though", None),
-                ("built a crate that generates a client-side Leptos web application with Tailwind and Vercel, inspired by `create-react-app`", Some("https://crates.io/crates/create-leptos-csr-tw")),
-                ("building workflow tools to internationalize textbooks", Some("https://github.com/google/mdbook-i18n-helpers")),
-                ("playing civ 5, +100 desk time", None),
+                ("building tools and components for the Leptos ecosystem. Here's my most recent one: ", Some("https://crates.io/crates/leptos_theme")),
+                ("being paid to contribute to open source projects. Very awesome, I can afford more bread.", None),
+                ("finding that programming in Rust is extremely rewarding.", None),
+                ("learned that gorillas also avoid the rain.", Some("https://www.youtube.com/watch?v=8c0YlhgUNFU")),
                 ("did I mention the bread?!?. This brand:", Some("https://essentialbaking.com/products/take-bake-sourdough"))
             ];
 
@@ -139,7 +136,8 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                 <div class=format!("w-full flex justify-center {}", title_css)>
                     <div class="px-1 md:w-2/3">
                         <p>
-                            Hello! I am a recent graduate, software engineer, and open source contributor. {"I'm "} currently in New York City.
+                            Hello! I am a recent graduate, software engineer, and open source contributor.
+                            {"I'm "} currently in New York City.
                         </p>
                         <br/>
 
@@ -217,7 +215,6 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
                     </picture>
                 </div>
             }
-
         }
         Command::Picture => {
             let images = [
