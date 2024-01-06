@@ -143,7 +143,7 @@ pub fn command_factory(curr_command: String) -> impl IntoView {
 
                         <p>
                             {"I'm "}
-                            currently a software engineer at Angelswing, a drone startup company. Previously, I interned at Toast, a restaurant point-of-sale company, where I worked on the waitlist and reservation service.
+                            currently a software engineer at Appendable, an open source append-only database project. Previously, I interned at Toast, a restaurant point-of-sale company, where I worked on the waitlist and reservation service.
                         </p>
                         <br/>
                         <p>
